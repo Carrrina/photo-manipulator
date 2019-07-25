@@ -1,0 +1,17 @@
+Cerinta 1
+		
+	Dupa ce am citit antetul din fisierul PPM, am retinut pixelii imaginii intr-o matrice de structura cu trei campuri: valorile pentru red, green, respectiv blue. Mi-am construit un arbore cuaternar de compresie cu noduri de tip Block, avand legaturi catre cei 4 fii si trei campuri cu valorile RGB. Radacinii i-am initializat din start fiii si pentru fiecare am apelat functia divide. Aceasta primeste ca parametri un nod din arbore, matricea de pixeli, numarul de noduri, numarul de culori, pragul de compresie si niste informatii despre blocul corespunzator nodului: aria (size) si coordonatele celor patru colturi (i1, i2, i3, i4). In functie, se calculeaza culoarea medie si se decide daca nodul din arbore devine terminal sau se apeleaza recursiv functia pentru fii sai.
+	Pentru formarea vectorului ce trebuie scris in fisierul de output am creat alta functie recursiva, tree_To_Vector, care primeste cate un nod din arborele de compresie si un element din vector. Ii transmite aria blocului si culoarea lui si, daca nu e nod frunza, creste indexul si apeleaza recursiv pentru cate un descendent. Apoi scriu in fisierul de iesire.
+
+Cerinta 2
+
+	Dupa ce am citit vectorul din fisierul de intrare, nu am facut o functie recursiva pentru crearea arborelui de compresie, ci am construit in paralel un vector cu elemente de tip Block si am lucrat cu indicii lor, copiind informatia, sau cu adresele lor, legand cate un element din cel de-al doilea vector de copiii sai. 
+	Pentru a crea matricea ce va fi scrisa in fisierul de iesire, am facut o functie recursiva ce primeste matricea, cate un nod din arborele de compresie si coordonatele blocului descris de nod. Elementele submatricei descrisa de aceste coordonate vor primi valorile RGB corespunzatoare nodului, apoi se apeleaza functia pentru cei 4 copii.
+
+Cerinta 3
+
+	Dupa ce am citit matricea si am format arborele folosind functiile de la Cerinta 1, am facut o functie recursiva care, pentru fiecare nod, interschimba descendentul top_left cu top_right si bottom_left cu bottom_right (pentru oglindire orizontala) sau top_left cu bottom_left si top_right cu bottom_right (pentru oglindire verticala). Am modificat si matricea aferenta arborelui schimbat si am scris-o in fisierul de iesire.
+
+Bonus
+
+	Dupa ce formez arborii de compresie pentru fiecare dintre cele doua imagini, ii parcurg printr-o functie recursiva ce formeaza al treilea arbore de compresie, primind cate un nod din primii doi arbori. Nodul din al treilea arbore va primi culoarea medie dintre primii 2. Apoi, se apeleaza functia pentru cei 4 descendenti, dar, daca vreun descendent e nul, se transmite ca parametru nodul curent, cel de-al treilea arbore continuand sa fie creat pana cand am terminat de parcurs primii doi arbori. La sfarsit, formez o matrice de pixeli si o scriu in fisier.
